@@ -32,15 +32,6 @@ jobs:
         if: always()
         run: mkdir -p cypress/screenshots cypress/videos cypress/reports/mochawesome-report
       
-      # 🆕 SALVAR os relatórios de API como artifact para usar depois
-      - name: 💾 Upload relatórios de API
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: api-reports
-          path: cypress/reports/mochawesome-report/*.json
-          retention-days: 1
-      
       - name: 📄 Publicar artefatos dos testes de API
         if: always()
         uses: actions/upload-artifact@v4
@@ -49,7 +40,8 @@ jobs:
           path: |
             cypress/screenshots
             cypress/videos
-    
+            cypress/reports/mochawesome-report
+  
   e2e-tests:
     name: 🧪 E2E Tests (Cucumber)
     runs-on: ubuntu-latest
@@ -65,7 +57,7 @@ jobs:
       
       - name: 📦 Instalar dependências
         run: npm ci
-  
+
       - name: 🧹 Limpar relatórios antigos
         run: rm -rf cypress/reports cypress/screenshots cypress/videos
       
@@ -73,54 +65,19 @@ jobs:
         run: npx cypress verify
       
       - name: ▶️ Rodar testes E2E (Cucumber)
-        run: npx cypress run --spec "cypress/e2e/**/*.feature"
+        run: npx cypress run --spec "**/*.feature"
       
-      - name: 🔍 DEBUG - Relatórios E2E gerados
-        if: always()
-        run: |
-          echo "📂 Relatórios E2E após execução:"
-          ls -lah cypress/reports/mochawesome-report/
-          echo ""
-          echo "📋 JSONs E2E:"
-          find cypress/reports/mochawesome-report -name "*.json" -type f
-      
-      # 🆕 BAIXAR para um diretório DIFERENTE
-      - name: 📥 Download relatórios de API
-        if: always()
-        uses: actions/download-artifact@v4
-        with:
-          name: api-reports
-          path: /tmp/api-reports
-      
-      # 🆕 MOVER os JSONs de API para o diretório correto (sem sobrescrever)
-      - name: 🔀 Mover relatórios de API para o diretório E2E
-        if: always()
-        run: |
-          echo "📥 Movendo JSONs de API..."
-          mkdir -p cypress/reports/mochawesome-report
-          cp /tmp/api-reports/*.json cypress/reports/mochawesome-report/ || echo "Nenhum JSON de API encontrado"
-          
-          echo ""
-          echo "📂 Todos os relatórios após mover:"
-          ls -lah cypress/reports/mochawesome-report/
-          echo ""
-          echo "📋 Todos os JSONs (API + E2E):"
-          find cypress/reports/mochawesome-report -name "*.json" -type f
-      
-      - name: 🔄 Consolidar TODOS os relatórios (API + E2E)
+      - name: 🔄 Consolidar relatórios Mochawesome
         if: always()
         run: |
           if [ -n "$(find cypress/reports/mochawesome-report -name 'mochawesome*.json' -type f 2>/dev/null)" ]; then
             echo "📊 Arquivos JSON encontrados, consolidando..."
-            echo "📋 Listando JSONs que serão consolidados:"
-            ls -lh cypress/reports/mochawesome-report/mochawesome*.json
-            
             npx mochawesome-merge "cypress/reports/mochawesome-report/mochawesome*.json" > cypress/reports/mochawesome-report/merged-report.json
             npx marge cypress/reports/mochawesome-report/merged-report.json --reportDir cypress/reports/mochawesome-report --inline
             
             # Renomeia o merged-report.html para index.html
             mv cypress/reports/mochawesome-report/merged-report.html cypress/reports/mochawesome-report/index.html
-            echo "✅ Relatório consolidado renomeado para index.html"
+            echo "✅ Relatório renomeado para index.html"
           else
             echo "⚠️ Nenhum arquivo JSON encontrado. Criando relatório vazio..."
             mkdir -p cypress/reports/mochawesome-report
