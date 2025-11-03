@@ -49,94 +49,111 @@ jobs:
           path: |
             cypress/screenshots
             cypress/videos
-  
+    
   e2e-tests:
-    name: 🧪 E2E Tests (Cucumber)
-    runs-on: ubuntu-latest
-    needs: api-tests
-    steps:
-      - name: 📥 Checkout do código
-        uses: actions/checkout@v4
+        name: 🧪 E2E Tests (Cucumber)
+        runs-on: ubuntu-latest
+        needs: api-tests
+        steps:
+          - name: 📥 Checkout do código
+            uses: actions/checkout@v4
+          
+          - name: 🟢 Setup Node.js
+            uses: actions/setup-node@v4
+            with:
+              node-version: 20
+          
+          - name: 📦 Instalar dependências
+            run: npm ci
       
-      - name: 🟢 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      
-      - name: 📦 Instalar dependências
-        run: npm ci
-
-      - name: 🧹 Limpar relatórios antigos
-        run: rm -rf cypress/reports cypress/screenshots cypress/videos
-      
-      - name: ✅ Verificar instalação do Cypress
-        run: npx cypress verify
-      
-      - name: ▶️ Rodar testes E2E (Cucumber)
-        run: npx cypress run --spec "cypress/e2e/**/*.feature"
-      
-      # 🆕 BAIXAR os relatórios de API
-      - name: 📥 Download relatórios de API
-        if: always()
-        uses: actions/download-artifact@v4
-        with:
-          name: api-reports
-          path: cypress/reports/mochawesome-report
-      
-      - name: 🔄 Consolidar TODOS os relatórios (API + E2E)
-        if: always()
-        run: |
-          if [ -n "$(find cypress/reports/mochawesome-report -name 'mochawesome*.json' -type f 2>/dev/null)" ]; then
-            echo "📊 Arquivos JSON encontrados, consolidando..."
-            echo "📋 Listando JSONs que serão consolidados:"
-            ls -lh cypress/reports/mochawesome-report/mochawesome*.json
-            
-            npx mochawesome-merge "cypress/reports/mochawesome-report/mochawesome*.json" > cypress/reports/mochawesome-report/merged-report.json
-            npx marge cypress/reports/mochawesome-report/merged-report.json --reportDir cypress/reports/mochawesome-report --inline
-            
-            # Renomeia o merged-report.html para index.html
-            mv cypress/reports/mochawesome-report/merged-report.html cypress/reports/mochawesome-report/index.html
-            echo "✅ Relatório consolidado renomeado para index.html"
-          else
-            echo "⚠️ Nenhum arquivo JSON encontrado. Criando relatório vazio..."
-            mkdir -p cypress/reports/mochawesome-report
-            echo '<!DOCTYPE html><html><body><h1>Nenhum relatório gerado</h1><p>Verifique a configuração do Mochawesome no cypress.config.js</p></body></html>' > cypress/reports/mochawesome-report/index.html
-          fi
-      
-      - name: 🔍 Verificar se index.html foi criado
-        if: always()
-        run: |
-          if [ -f "cypress/reports/mochawesome-report/index.html" ]; then
-            echo "✅ index.html encontrado!"
-            ls -lh cypress/reports/mochawesome-report/index.html
-          else
-            echo "❌ index.html NÃO encontrado!"
-          fi
-      
-      - name: 🗂️ Garantir diretórios de artefatos
-        if: always()
-        run: mkdir -p cypress/screenshots cypress/videos
-      
-      - name: 📄 Publicar artefatos dos testes E2E + Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-e2e-artifacts
-          path: |
-            cypress/screenshots
-            cypress/videos
-            cypress/reports/mochawesome-report
-      
-      - name: 🌐 Publicar Mochawesome Report no GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./cypress/reports/mochawesome-report
-      
-      - name: 🔗 Adicionar link do relatório ao summary
-        if: always()
-        run: |
-          echo "### ✅ Mochawesome Report publicado com sucesso!" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "🔗 [Clique aqui para visualizar o relatório](https://renanmsf11.github.io/Optii-challenge/)" >> $GITHUB_STEP_SUMMARY
+          - name: 🧹 Limpar relatórios antigos
+            run: rm -rf cypress/reports cypress/screenshots cypress/videos
+          
+          - name: ✅ Verificar instalação do Cypress
+            run: npx cypress verify
+          
+          - name: ▶️ Rodar testes E2E (Cucumber)
+            run: npx cypress run --spec "cypress/e2e/**/*.feature"
+          
+          # 🆕 DEBUG: Ver o que tem ANTES de baixar os relatórios de API
+          - name: 🔍 DEBUG - Relatórios E2E gerados
+            if: always()
+            run: |
+              echo "📂 Relatórios E2E após execução:"
+              ls -lah cypress/reports/mochawesome-report/ || echo "Diretório não existe"
+          
+          # Baixar os relatórios de API
+          - name: 📥 Download relatórios de API
+            if: always()
+            uses: actions/download-artifact@v4
+            with:
+              name: api-reports
+              path: cypress/reports/mochawesome-report
+          
+          # 🆕 DEBUG: Ver o que tem DEPOIS de baixar os relatórios de API
+          - name: 🔍 DEBUG - Todos os relatórios (API + E2E)
+            if: always()
+            run: |
+              echo "📂 Todos os relatórios após download:"
+              ls -lah cypress/reports/mochawesome-report/
+              echo ""
+              echo "📋 JSONs disponíveis para merge:"
+              find cypress/reports/mochawesome-report -name "*.json" -type f
+          
+          - name: 🔄 Consolidar TODOS os relatórios (API + E2E)
+            if: always()
+            run: |
+              if [ -n "$(find cypress/reports/mochawesome-report -name 'mochawesome*.json' -type f 2>/dev/null)" ]; then
+                echo "📊 Arquivos JSON encontrados, consolidando..."
+                echo "📋 Listando JSONs que serão consolidados:"
+                ls -lh cypress/reports/mochawesome-report/mochawesome*.json
+                
+                npx mochawesome-merge "cypress/reports/mochawesome-report/mochawesome*.json" > cypress/reports/mochawesome-report/merged-report.json
+                npx marge cypress/reports/mochawesome-report/merged-report.json --reportDir cypress/reports/mochawesome-report --inline
+                
+                # Renomeia o merged-report.html para index.html
+                mv cypress/reports/mochawesome-report/merged-report.html cypress/reports/mochawesome-report/index.html
+                echo "✅ Relatório consolidado renomeado para index.html"
+              else
+                echo "⚠️ Nenhum arquivo JSON encontrado. Criando relatório vazio..."
+                mkdir -p cypress/reports/mochawesome-report
+                echo '<!DOCTYPE html><html><body><h1>Nenhum relatório gerado</h1><p>Verifique a configuração do Mochawesome no cypress.config.js</p></body></html>' > cypress/reports/mochawesome-report/index.html
+              fi
+          
+          - name: 🔍 Verificar se index.html foi criado
+            if: always()
+            run: |
+              if [ -f "cypress/reports/mochawesome-report/index.html" ]; then
+                echo "✅ index.html encontrado!"
+                ls -lh cypress/reports/mochawesome-report/index.html
+              else
+                echo "❌ index.html NÃO encontrado!"
+              fi
+          
+          - name: 🗂️ Garantir diretórios de artefatos
+            if: always()
+            run: mkdir -p cypress/screenshots cypress/videos
+          
+          - name: 📄 Publicar artefatos dos testes E2E + Report
+            if: always()
+            uses: actions/upload-artifact@v4
+            with:
+              name: cypress-e2e-artifacts
+              path: |
+                cypress/screenshots
+                cypress/videos
+                cypress/reports/mochawesome-report
+          
+          - name: 🌐 Publicar Mochawesome Report no GitHub Pages
+            if: always()
+            uses: peaceiris/actions-gh-pages@v4
+            with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+              publish_dir: ./cypress/reports/mochawesome-report
+          
+          - name: 🔗 Adicionar link do relatório ao summary
+            if: always()
+            run: |
+              echo "### ✅ Mochawesome Report publicado com sucesso!" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "🔗 [Clique aqui para visualizar o relatório](https://renanmsf11.github.io/Optii-challenge/)" >> $GITHUB_STEP_SUMMARY
