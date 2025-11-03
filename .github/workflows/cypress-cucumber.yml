@@ -70,9 +70,9 @@ jobs:
       - name: 🔄 Consolidar relatórios Mochawesome
         if: always()
         run: |
-          if [ -n "$(find cypress/reports/mochawesome-report -name '*.json' -type f 2>/dev/null)" ]; then
+          if [ -n "$(find cypress/reports/mochawesome-report -name 'mochawesome*.json' -type f 2>/dev/null)" ]; then
             echo "📊 Arquivos JSON encontrados, consolidando..."
-            npx mochawesome-merge "cypress/reports/mochawesome-report/*.json" > cypress/reports/mochawesome-report/merged-report.json
+            npx mochawesome-merge "cypress/reports/mochawesome-report/mochawesome*.json" > cypress/reports/mochawesome-report/merged-report.json
             npx marge cypress/reports/mochawesome-report/merged-report.json --reportDir cypress/reports/mochawesome-report --inline
           else
             echo "⚠️ Nenhum arquivo JSON encontrado. Criando relatório vazio..."
