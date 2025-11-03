@@ -5,9 +5,9 @@
     "passes": 3,
     "pending": 0,
     "failures": 0,
-    "start": "2025-11-03T15:46:36.344Z",
-    "end": "2025-11-03T15:46:41.234Z",
-    "duration": 4890,
+    "start": "2025-11-03T16:36:07.194Z",
+    "end": "2025-11-03T16:36:12.218Z",
+    "duration": 5024,
     "testsRegistered": 3,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "a2e6bd74-088b-4bae-b298-b5abca345c4f",
+      "uuid": "7cf940c3-aaf2-4ed7-a5ca-76a9998e3083",
       "title": "",
       "fullFile": "cypress/e2e/features/productPage.feature",
       "file": "cypress/e2e/features/productPage.feature",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "83bbb678-102c-4522-b809-31cbfa1a0977",
+          "uuid": "73d1c187-5338-424a-8891-998ac6cbf852",
           "title": "Product page features in SauceDemo web application",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "01 - User add \"product\" to cart and validate \"product\" in cart",
               "fullTitle": "Product page features in SauceDemo web application 01 - User add \"product\" to cart and validate \"product\" in cart",
               "timedOut": null,
-              "duration": 1217,
+              "duration": 1265,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,8 +47,8 @@
               "context": null,
               "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
               "err": {},
-              "uuid": "42ed5386-1b14-4fbd-b724-8e12cfc0ac62",
-              "parentUUID": "83bbb678-102c-4522-b809-31cbfa1a0977",
+              "uuid": "0f6f0daf-8dca-40fb-8e04-b54d7a1779ca",
+              "parentUUID": "73d1c187-5338-424a-8891-998ac6cbf852",
               "isHook": false,
               "skipped": false
             },
@@ -56,7 +56,7 @@
               "title": "02 - User remove \"product\" from cart through \"Product\" page",
               "fullTitle": "Product page features in SauceDemo web application 02 - User remove \"product\" from cart through \"Product\" page",
               "timedOut": null,
-              "duration": 902,
+              "duration": 934,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -65,8 +65,8 @@
               "context": null,
               "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
               "err": {},
-              "uuid": "f919ade2-65fb-4419-a2c6-48ca2eae0d56",
-              "parentUUID": "83bbb678-102c-4522-b809-31cbfa1a0977",
+              "uuid": "acf681db-5597-4ce4-9741-add07b75deca",
+              "parentUUID": "73d1c187-5338-424a-8891-998ac6cbf852",
               "isHook": false,
               "skipped": false
             },
@@ -74,7 +74,7 @@
               "title": "03 - User remove \"product\" from cart through \"Cart\" page",
               "fullTitle": "Product page features in SauceDemo web application 03 - User remove \"product\" from cart through \"Cart\" page",
               "timedOut": null,
-              "duration": 1060,
+              "duration": 1038,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -83,22 +83,22 @@
               "context": null,
               "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
               "err": {},
-              "uuid": "1f470863-c5d8-4290-9ac1-eac4f9e8b3b5",
-              "parentUUID": "83bbb678-102c-4522-b809-31cbfa1a0977",
+              "uuid": "f704d163-1043-41e8-b5ff-afae76dcc490",
+              "parentUUID": "73d1c187-5338-424a-8891-998ac6cbf852",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "42ed5386-1b14-4fbd-b724-8e12cfc0ac62",
-            "f919ade2-65fb-4419-a2c6-48ca2eae0d56",
-            "1f470863-c5d8-4290-9ac1-eac4f9e8b3b5"
+            "0f6f0daf-8dca-40fb-8e04-b54d7a1779ca",
+            "acf681db-5597-4ce4-9741-add07b75deca",
+            "f704d163-1043-41e8-b5ff-afae76dcc490"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 3179,
+          "duration": 3237,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
