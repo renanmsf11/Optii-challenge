@@ -1,0 +1,6 @@
+{
+    "addToCartItem1":" [data-test='add-to-cart-sauce-labs-backpack']",
+    "shoppingCartButton":"[data-test='shopping-cart-badge']",
+    "removeItem1":"[data-test='remove-sauce-labs-backpack']"
+
+  }
