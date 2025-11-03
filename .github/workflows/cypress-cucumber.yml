@@ -81,3 +81,11 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./cypress/reports/mochawesome-report
+
+
+      - name: 🔗 Adicionar link do relatório ao summary
+        if: always()
+        run: |
+          echo "### ✅ Mochawesome Report publicado com sucesso!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 [Clique aqui para visualizar o relatório](https://renanmsf11.github.io/Optii-challenge/)" >> $GITHUB_STEP_SUMMARY
