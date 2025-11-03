@@ -57,6 +57,9 @@ jobs:
       
       - name: 📦 Instalar dependências
         run: npm ci
+
+      - name: 🧹 Limpar relatórios antigos
+        run: rm -rf cypress/reports cypress/screenshots cypress/videos
       
       - name: ✅ Verificar instalação do Cypress
         run: npx cypress verify
