@@ -21,7 +21,11 @@ jobs:
       - name: ▶️ Rodar testes de API
         run: npx cypress run --spec "cypress/e2e/api/**/*.cy.{js,ts}"
 
-      - name: 📄 Publicar artefatos dos testes de API (screenshots e vídeos)
+      - name: 🗂️ Garantir diretórios de artefatos
+        if: always()
+        run: mkdir -p cypress/screenshots cypress/videos cypress/reports/mochawesome-report
+
+      - name: 📄 Publicar artefatos dos testes de API
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -29,6 +33,7 @@ jobs:
           path: |
             cypress/screenshots
             cypress/videos
+            cypress/reports/mochawesome-report
 
   e2e-tests:
     name: 🧪 E2E Tests (Cucumber)
@@ -53,7 +58,11 @@ jobs:
       - name: ▶️ Rodar testes E2E (Cucumber)
         run: npx cypress run --spec "**/*.feature"
 
-      - name: 📄 Publicar artefatos dos testes E2E
+      - name: 🗂️ Garantir diretórios de artefatos
+        if: always()
+        run: mkdir -p cypress/screenshots cypress/videos cypress/reports/mochawesome-report
+
+      - name: 📄 Publicar artefatos dos testes E2E + Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -61,3 +70,4 @@ jobs:
           path: |
             cypress/screenshots
             cypress/videos
+            cypress/reports/mochawesome-report
