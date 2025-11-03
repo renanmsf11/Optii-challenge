@@ -21,6 +21,9 @@ jobs:
       
       - name: 📦 Instalar dependências
         run: npm ci
+        
+      - name: 🧹 Limpar relatórios antigos
+        run: rm -rf cypress/reports cypress/screenshots cypress/videos
       
       - name: ▶️ Rodar testes de API
         run: npx cypress run --spec "cypress/e2e/api/**/*.cy.{js,ts}"
