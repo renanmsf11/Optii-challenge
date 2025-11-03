@@ -1,0 +1,201 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-11-03T18:47:01.939Z",
+    "end": "2025-11-03T18:47:14.467Z",
+    "duration": 12528,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "0108c4af-f72b-4cc8-bb82-9990906402b1",
+      "title": "",
+      "fullFile": "cypress/e2e/features/loginPage.feature",
+      "file": "cypress/e2e/features/loginPage.feature",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5e74c393-55fd-44b4-b7fa-78777cca7c6e",
+          "title": "Login feature SauceDemo web application",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "01 - Login with valid \"standard\" user credentials",
+              "fullTitle": "Login feature SauceDemo web application 01 - Login with valid \"standard\" user credentials",
+              "timedOut": null,
+              "duration": 1357,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "dc45ddff-1f05-4a01-9480-b2fca516b65f",
+              "parentUUID": "5e74c393-55fd-44b4-b7fa-78777cca7c6e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "02 - Login with valid \"glitch\" user credentials",
+              "fullTitle": "Login feature SauceDemo web application 02 - Login with valid \"glitch\" user credentials",
+              "timedOut": null,
+              "duration": 5971,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "d42dd0d4-eb65-4475-b68d-21778d9b4dea",
+              "parentUUID": "5e74c393-55fd-44b4-b7fa-78777cca7c6e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "03 - Login with valid \"locked out\" user credentials",
+              "fullTitle": "Login feature SauceDemo web application 03 - Login with valid \"locked out\" user credentials",
+              "timedOut": null,
+              "duration": 751,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "e7a7292b-360a-43d3-929b-85132823130e",
+              "parentUUID": "5e74c393-55fd-44b4-b7fa-78777cca7c6e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "04 - Login with invalid user credentials",
+              "fullTitle": "Login feature SauceDemo web application 04 - Login with invalid user credentials",
+              "timedOut": null,
+              "duration": 642,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "5705e531-ac8d-4a4c-bd4c-c2118144f358",
+              "parentUUID": "5e74c393-55fd-44b4-b7fa-78777cca7c6e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "05 - Login with empty user credentials",
+              "fullTitle": "Login feature SauceDemo web application 05 - Login with empty user credentials",
+              "timedOut": null,
+              "duration": 460,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "0c1411ee-8fcc-4fb3-95c1-70e7d2c1b558",
+              "parentUUID": "5e74c393-55fd-44b4-b7fa-78777cca7c6e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "06 - Logout from \"Product\" page",
+              "fullTitle": "Login feature SauceDemo web application 06 - Logout from \"Product\" page",
+              "timedOut": null,
+              "duration": 1206,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "c3673699-6b0f-44e5-8c2f-88d128c8cdba",
+              "parentUUID": "5e74c393-55fd-44b4-b7fa-78777cca7c6e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "dc45ddff-1f05-4a01-9480-b2fca516b65f",
+            "d42dd0d4-eb65-4475-b68d-21778d9b4dea",
+            "e7a7292b-360a-43d3-929b-85132823130e",
+            "5705e531-ac8d-4a4c-bd4c-c2118144f358",
+            "0c1411ee-8fcc-4fb3-95c1-70e7d2c1b558",
+            "c3673699-6b0f-44e5-8c2f-88d128c8cdba"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 10387,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true
+      },
+      "version": "6.3.0"
+    }
+  }
+}

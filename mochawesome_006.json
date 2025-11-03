@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-11-03T18:47:18.158Z",
+    "end": "2025-11-03T18:47:22.811Z",
+    "duration": 4653,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a12b5240-a380-4f35-816d-efa52e034e2c",
+      "title": "",
+      "fullFile": "cypress/e2e/features/productPage.feature",
+      "file": "cypress/e2e/features/productPage.feature",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0e795f6e-19d5-4011-a3e3-fa41c9498781",
+          "title": "Product page features in SauceDemo web application",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "01 - User add \"product\" to cart and validate \"product\" in cart",
+              "fullTitle": "Product page features in SauceDemo web application 01 - User add \"product\" to cart and validate \"product\" in cart",
+              "timedOut": null,
+              "duration": 1156,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "cdc37dd5-a944-413a-8add-744ad3589842",
+              "parentUUID": "0e795f6e-19d5-4011-a3e3-fa41c9498781",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "02 - User remove \"product\" from cart through \"Product\" page",
+              "fullTitle": "Product page features in SauceDemo web application 02 - User remove \"product\" from cart through \"Product\" page",
+              "timedOut": null,
+              "duration": 929,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "e953bb95-e62a-421d-919f-20cd4f781e12",
+              "parentUUID": "0e795f6e-19d5-4011-a3e3-fa41c9498781",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "03 - User remove \"product\" from cart through \"Cart\" page",
+              "fullTitle": "Product page features in SauceDemo web application 03 - User remove \"product\" from cart through \"Cart\" page",
+              "timedOut": null,
+              "duration": 952,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const state = window.testState;\nreturn cy\n  .then(() => state.onStartScenario(scenario, indexedSteps))\n  .then(() =>\n    resolveAndRunBeforeHooks.call(this, scenario.tags, state.feature.name)\n  )\n  .then(() =>\n    indexedSteps.forEach((step) =>\n      stepTest.call(this, state, step, rowData)\n    )\n  )\n  .then(() => state.onFinishScenario(scenario));",
+              "err": {},
+              "uuid": "a597c98f-8b94-4656-aa6d-cb1221778194",
+              "parentUUID": "0e795f6e-19d5-4011-a3e3-fa41c9498781",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "cdc37dd5-a944-413a-8add-744ad3589842",
+            "e953bb95-e62a-421d-919f-20cd4f781e12",
+            "a597c98f-8b94-4656-aa6d-cb1221778194"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3037,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true
+      },
+      "version": "6.3.0"
+    }
+  }
+}
