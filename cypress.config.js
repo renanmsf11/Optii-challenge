@@ -21,11 +21,11 @@ module.exports = defineConfig({
       on('file:preprocessor', cucumber());
       return config;
     },
-    reporter: 'mochawesome',
+    reporter: "mochawesome",
     reporterOptions: {
-      reportDir: 'mochawesome-report',
+      reportDir: "cypress/reports/mochawesome-report",
       overwrite: false,
-      html: false,
+      html: true,
       json: true},
 
     env: {
