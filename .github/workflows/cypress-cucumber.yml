@@ -71,3 +71,10 @@ jobs:
             cypress/screenshots
             cypress/videos
             cypress/reports/mochawesome-report
+
+      - name: 🌐 Publicar Mochawesome Report no GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./cypress/reports/mochawesome-report
