@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-11-03T19:34:41.543Z",
-    "end": "2025-11-03T19:34:41.710Z",
-    "duration": 167,
+    "start": "2025-11-03T19:41:10.381Z",
+    "end": "2025-11-03T19:41:10.562Z",
+    "duration": 181,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "1cfc9295-39ee-4567-addf-a26e5221ab2a",
+      "uuid": "11861866-37f6-41d2-8d97-d6fa16be96da",
       "title": "",
       "fullFile": "cypress/e2e/api/users/createAccount.cy.js",
       "file": "cypress/e2e/api/users/createAccount.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "c900bb91-e353-4ee6-8724-7db00d7dd3ff",
+          "uuid": "02250c15-c575-475c-bb46-1de9c59b0b49",
           "title": "POST /usuarios - Create new user Account (201)",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "must create new user successfully",
               "fullTitle": "POST /usuarios - Create new user Account (201) must create new user successfully",
               "timedOut": null,
-              "duration": 134,
+              "duration": 148,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "var random = Math.floor(Math.random() * 100000);\nvar email = \"testeqa\".concat(random, \"@qa.com\");\nvar newUser = {\n  nome: 'teste',\n  email: email,\n  password: 'teste',\n  administrador: 'true'\n};\ncy.request({\n  method: 'POST',\n  url: 'https://serverest.dev/usuarios',\n  body: newUser,\n  headers: {\n    'Content-Type': 'application/json',\n    Accept: 'application/json'\n  },\n  failOnStatusCode: false\n}).then(function (response) {\n  expect(response.status).to.eq(201);\n  expect(response.body).to.have.property('message', 'Cadastro realizado com sucesso');\n  cy.log('Usuário criado:', JSON.stringify(response.body));\n  cy.log('📧 Email:', email);\n  cy.log('🔐 Senha:', newUser.password);\n});",
               "err": {},
-              "uuid": "f708aa83-e566-45b8-8537-5354bd994e6a",
-              "parentUUID": "c900bb91-e353-4ee6-8724-7db00d7dd3ff",
+              "uuid": "5bd0ee49-064b-4c93-917b-81427de17ddd",
+              "parentUUID": "02250c15-c575-475c-bb46-1de9c59b0b49",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "f708aa83-e566-45b8-8537-5354bd994e6a"
+            "5bd0ee49-064b-4c93-917b-81427de17ddd"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 134,
+          "duration": 148,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

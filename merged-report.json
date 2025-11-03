@@ -12,13 +12,13 @@
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false,
-    "start": "2025-11-03T19:34:35.510Z",
-    "end": "2025-11-03T19:34:41.710Z",
-    "duration": 6200
+    "start": "2025-11-03T19:41:04.634Z",
+    "end": "2025-11-03T19:41:10.562Z",
+    "duration": 5928
   },
   "results": [
     {
-      "uuid": "150360fe-1bb9-41fc-bf47-1a5f8b289eea",
+      "uuid": "241fc492-8ac9-4c17-832b-32394f7682c7",
       "title": "",
       "fullFile": "cypress/e2e/api/products/products.cy.js",
       "file": "cypress/e2e/api/products/products.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "fd9dff46-be11-4431-8965-3d70897147ef",
+          "uuid": "459dbc8c-585e-4cbe-a570-017cc33fe899",
           "title": "GET /produtos - list products (200)",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should return a list of products",
               "fullTitle": "GET /produtos - list products (200) should return a list of products",
               "timedOut": null,
-              "duration": 416,
+              "duration": 488,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "cy.request({\n  method: 'GET',\n  url: 'https://serverest.dev/produtos',\n  headers: {\n    'Content-Type': 'application/json',\n    Accept: 'application/json'\n  },\n  failOnStatusCode: false\n}).then(function (response) {\n  expect(response.status).to.eq(200);\n  var responseBody = response.body;\n  var products = responseBody.produtos;\n  cy.log('📦 Products found:');\n  if (Array.isArray(products)) {\n    products.forEach(function (product, index) {\n      cy.log(\"\\n\\uD83D\\uDED2 Product \".concat(index + 1));\n      cy.log(\"ID: \".concat(product._id));\n      cy.log(\"Name: \".concat(product.nome));\n      cy.log(\"Price: \".concat(product.preco));\n      cy.log(\"Description: \".concat(product.descricao));\n      cy.log(\"Quantity: \".concat(product.quantidade));\n    });\n  } else {\n    cy.log('⚠️ No products found or unexpected response structure:', JSON.stringify(products));\n  }\n});",
               "err": {},
-              "uuid": "5349c8a2-dd49-48c2-9748-5241363dea12",
-              "parentUUID": "fd9dff46-be11-4431-8965-3d70897147ef",
+              "uuid": "d90df93b-0faa-4880-ad4a-0e8eabc846f3",
+              "parentUUID": "459dbc8c-585e-4cbe-a570-017cc33fe899",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "5349c8a2-dd49-48c2-9748-5241363dea12"
+            "d90df93b-0faa-4880-ad4a-0e8eabc846f3"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 416,
+          "duration": 488,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -76,7 +76,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "1cfc9295-39ee-4567-addf-a26e5221ab2a",
+      "uuid": "11861866-37f6-41d2-8d97-d6fa16be96da",
       "title": "",
       "fullFile": "cypress/e2e/api/users/createAccount.cy.js",
       "file": "cypress/e2e/api/users/createAccount.cy.js",
@@ -85,7 +85,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "c900bb91-e353-4ee6-8724-7db00d7dd3ff",
+          "uuid": "02250c15-c575-475c-bb46-1de9c59b0b49",
           "title": "POST /usuarios - Create new user Account (201)",
           "fullFile": "",
           "file": "",
@@ -96,7 +96,7 @@
               "title": "must create new user successfully",
               "fullTitle": "POST /usuarios - Create new user Account (201) must create new user successfully",
               "timedOut": null,
-              "duration": 134,
+              "duration": 148,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -105,20 +105,20 @@
               "context": null,
               "code": "var random = Math.floor(Math.random() * 100000);\nvar email = \"testeqa\".concat(random, \"@qa.com\");\nvar newUser = {\n  nome: 'teste',\n  email: email,\n  password: 'teste',\n  administrador: 'true'\n};\ncy.request({\n  method: 'POST',\n  url: 'https://serverest.dev/usuarios',\n  body: newUser,\n  headers: {\n    'Content-Type': 'application/json',\n    Accept: 'application/json'\n  },\n  failOnStatusCode: false\n}).then(function (response) {\n  expect(response.status).to.eq(201);\n  expect(response.body).to.have.property('message', 'Cadastro realizado com sucesso');\n  cy.log('Usuário criado:', JSON.stringify(response.body));\n  cy.log('📧 Email:', email);\n  cy.log('🔐 Senha:', newUser.password);\n});",
               "err": {},
-              "uuid": "f708aa83-e566-45b8-8537-5354bd994e6a",
-              "parentUUID": "c900bb91-e353-4ee6-8724-7db00d7dd3ff",
+              "uuid": "5bd0ee49-064b-4c93-917b-81427de17ddd",
+              "parentUUID": "02250c15-c575-475c-bb46-1de9c59b0b49",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "f708aa83-e566-45b8-8537-5354bd994e6a"
+            "5bd0ee49-064b-4c93-917b-81427de17ddd"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 134,
+          "duration": 148,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
@@ -134,7 +134,7 @@
       "_timeout": 2000
     },
     {
-      "uuid": "37d73335-4be4-4462-8664-0e188d1d328f",
+      "uuid": "1d248979-fe4a-4f73-9b10-77d2e05cfe37",
       "title": "",
       "fullFile": "cypress/e2e/api/auth/login.cy.js",
       "file": "cypress/e2e/api/auth/login.cy.js",
@@ -143,7 +143,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "057c0399-2ade-4f18-9c33-599101d3c8df",
+          "uuid": "b17c0f1a-ca7b-43c4-b205-605ca909b712",
           "title": "POST /login - authenticate with a newly created user (200)",
           "fullFile": "",
           "file": "",
@@ -154,7 +154,7 @@
               "title": "should successfully create and authenticate a user",
               "fullTitle": "POST /login - authenticate with a newly created user (200) should successfully create and authenticate a user",
               "timedOut": null,
-              "duration": 740,
+              "duration": 492,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -163,20 +163,20 @@
               "context": null,
               "code": "var random = Math.floor(Math.random() * 100000);\nvar email = \"testqa\".concat(random, \"@qa.com\");\nvar user = {\n  nome: 'test',\n  email: email,\n  password: 'test',\n  administrador: 'true'\n};\n// Create the user\ncy.request({\n  method: 'POST',\n  url: 'https://serverest.dev/usuarios',\n  body: user,\n  headers: {\n    'Content-Type': 'application/json',\n    Accept: 'application/json'\n  },\n  failOnStatusCode: false\n}).then(function (createRes) {\n  expect(createRes.status).to.eq(201);\n  expect(createRes.body.message).to.eq('Cadastro realizado com sucesso');\n  cy.log(\"\\uD83D\\uDD10 Logging in with: \".concat(user.email, \" | Password: \").concat(user.password));\n  // Log in with the same user\n  cy.request({\n    method: 'POST',\n    url: 'https://serverest.dev/login',\n    body: {\n      email: user.email,\n      password: user.password\n    },\n    headers: {\n      'Content-Type': 'application/json',\n      Accept: 'application/json'\n    },\n    failOnStatusCode: false\n  }).then(function (loginRes) {\n    expect(loginRes.status).to.eq(200);\n    expect(loginRes.body).to.have.property('authorization');\n    cy.log('✅ Token received:', loginRes.body.authorization);\n  });\n});",
               "err": {},
-              "uuid": "67080dd6-4403-4fed-8b7f-4ebef44a95f0",
-              "parentUUID": "057c0399-2ade-4f18-9c33-599101d3c8df",
+              "uuid": "c616674d-e844-413d-9dae-ebfe030441d3",
+              "parentUUID": "b17c0f1a-ca7b-43c4-b205-605ca909b712",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "67080dd6-4403-4fed-8b7f-4ebef44a95f0"
+            "c616674d-e844-413d-9dae-ebfe030441d3"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 740,
+          "duration": 492,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
