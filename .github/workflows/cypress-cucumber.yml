@@ -32,6 +32,15 @@ jobs:
         if: always()
         run: mkdir -p cypress/screenshots cypress/videos cypress/reports/mochawesome-report
       
+      # 🆕 SALVAR os relatórios de API como artifact para usar depois
+      - name: 💾 Upload relatórios de API
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-reports
+          path: cypress/reports/mochawesome-report/*.json
+          retention-days: 1
+      
       - name: 📄 Publicar artefatos dos testes de API
         if: always()
         uses: actions/upload-artifact@v4
@@ -40,7 +49,6 @@ jobs:
           path: |
             cypress/screenshots
             cypress/videos
-            cypress/reports/mochawesome-report
   
   e2e-tests:
     name: 🧪 E2E Tests (Cucumber)
@@ -65,19 +73,30 @@ jobs:
         run: npx cypress verify
       
       - name: ▶️ Rodar testes E2E (Cucumber)
-        run: npx cypress run --spec "**/*.feature"
+        run: npx cypress run --spec "cypress/e2e/**/*.feature"
       
-      - name: 🔄 Consolidar relatórios Mochawesome
+      # 🆕 BAIXAR os relatórios de API
+      - name: 📥 Download relatórios de API
+        if: always()
+        uses: actions/download-artifact@v4
+        with:
+          name: api-reports
+          path: cypress/reports/mochawesome-report
+      
+      - name: 🔄 Consolidar TODOS os relatórios (API + E2E)
         if: always()
         run: |
           if [ -n "$(find cypress/reports/mochawesome-report -name 'mochawesome*.json' -type f 2>/dev/null)" ]; then
             echo "📊 Arquivos JSON encontrados, consolidando..."
+            echo "📋 Listando JSONs que serão consolidados:"
+            ls -lh cypress/reports/mochawesome-report/mochawesome*.json
+            
             npx mochawesome-merge "cypress/reports/mochawesome-report/mochawesome*.json" > cypress/reports/mochawesome-report/merged-report.json
             npx marge cypress/reports/mochawesome-report/merged-report.json --reportDir cypress/reports/mochawesome-report --inline
             
             # Renomeia o merged-report.html para index.html
             mv cypress/reports/mochawesome-report/merged-report.html cypress/reports/mochawesome-report/index.html
-            echo "✅ Relatório renomeado para index.html"
+            echo "✅ Relatório consolidado renomeado para index.html"
           else
             echo "⚠️ Nenhum arquivo JSON encontrado. Criando relatório vazio..."
             mkdir -p cypress/reports/mochawesome-report
