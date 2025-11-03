@@ -33,3 +33,10 @@ Given the user visit "Sauce Demo" main page
     When the user types invalid user credentials in "Login" page
     And the user click in "Login" button in "Login" page
     Then system must return an error message "Epic sadface: Username and password do not match any user in this service"
+
+  @focus
+  Scenario: 05 - Login with empty user credentials
+
+    When the user leaves empty the user credentials in "Login" page
+    And the user click in "Login" button in "Login" page
+    Then system must return an error message "Epic sadface: Username is required"

@@ -6,5 +6,6 @@
     "usernameField": "[data-test='username']",
     "passwordField": "[data-test='password']",
     "loginButton": "[data-test='login-button']",
-    "password": "secret_sauce"
+    "password": "secret_sauce",
+    "errorMessage": "[data-test='error']"
   }

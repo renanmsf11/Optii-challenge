@@ -47,6 +47,11 @@ When('the user types invalid user credentials in "Login" page', () => {
     cy.get(el.passwordField).should('be.visible').type('22222222')
   })
 })
+
 Then('system must return an error message "Epic sadface: Username and password do not match any user in this service"', () => {
-  cy.get('h3[data-test="error"]').should('be.visible').and('have.text', 'Epic sadface: Username and password do not match any user in this service')
+
+  cy.fixture('pomLoginPage').then((el) => {
+    cy.get(el.errorMessage).should('be.visible').and('have.text', 'Epic sadface: Username and password do not match any user in this service')
+  })
+  
 })
