@@ -26,7 +26,8 @@ module.exports = defineConfig({
       reportDir: "cypress/reports/mochawesome-report",
       overwrite: false,
       html: true,
-      json: true},
+      json: true,
+      charts: true},
 
     env: {
       cucumber: {
