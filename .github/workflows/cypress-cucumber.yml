@@ -61,12 +61,6 @@ jobs:
       - name: ▶️ Rodar testes E2E (Cucumber)
         run: npx cypress run --spec "**/*.feature"
       
-      - name: 📊 Listar arquivos gerados
-        if: always()
-        run: |
-          echo "📁 Conteúdo do diretório de reports:"
-          ls -la cypress/reports/mochawesome-report/ || echo "Diretório não existe"
-      
       - name: 🔄 Consolidar relatórios Mochawesome
         if: always()
         run: |
@@ -78,6 +72,23 @@ jobs:
             echo "⚠️ Nenhum arquivo JSON encontrado. Criando relatório vazio..."
             mkdir -p cypress/reports/mochawesome-report
             echo '<!DOCTYPE html><html><body><h1>Nenhum relatório gerado</h1><p>Verifique a configuração do Mochawesome no cypress.config.js</p></body></html>' > cypress/reports/mochawesome-report/index.html
+          fi
+      
+      - name: 🔍 Verificar arquivos gerados
+        if: always()
+        run: |
+          echo "📂 Estrutura do diretório mochawesome-report:"
+          ls -lah cypress/reports/mochawesome-report/
+          echo ""
+          echo "🔎 Verificando se index.html existe:"
+          if [ -f "cypress/reports/mochawesome-report/index.html" ]; then
+            echo "✅ index.html encontrado!"
+            echo "📄 Primeiras linhas do arquivo:"
+            head -n 20 cypress/reports/mochawesome-report/index.html
+          else
+            echo "❌ index.html NÃO encontrado!"
+            echo "📋 Arquivos disponíveis:"
+            find cypress/reports/mochawesome-report -type f
           fi
       
       - name: 🗂️ Garantir diretórios de artefatos
