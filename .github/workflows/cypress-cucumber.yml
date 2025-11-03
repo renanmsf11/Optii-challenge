@@ -1,33 +1,34 @@
 name: Cypress Tests
-
 permissions:
   contents: write
-
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-
 jobs:
   api-tests:
     name: 🔌 API Tests
     runs-on: ubuntu-latest
-
     steps:
       - name: 📥 Checkout do código
         uses: actions/checkout@v4
-
-      - name: 📦 Instalar dependências (somente o necessário)
+      
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: 📦 Instalar dependências
         run: npm ci
-
+      
       - name: ▶️ Rodar testes de API
         run: npx cypress run --spec "cypress/e2e/api/**/*.cy.{js,ts}"
-
+      
       - name: 🗂️ Garantir diretórios de artefatos
         if: always()
         run: mkdir -p cypress/screenshots cypress/videos cypress/reports/mochawesome-report
-
+      
       - name: 📄 Publicar artefatos dos testes de API
         if: always()
         uses: actions/upload-artifact@v4
@@ -37,34 +38,39 @@ jobs:
             cypress/screenshots
             cypress/videos
             cypress/reports/mochawesome-report
-
+  
   e2e-tests:
     name: 🧪 E2E Tests (Cucumber)
     runs-on: ubuntu-latest
     needs: api-tests
-
     steps:
       - name: 📥 Checkout do código
         uses: actions/checkout@v4
-
+      
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
+      
       - name: 📦 Instalar dependências
         run: npm ci
-
+      
       - name: ✅ Verificar instalação do Cypress
         run: npx cypress verify
-
+      
       - name: ▶️ Rodar testes E2E (Cucumber)
         run: npx cypress run --spec "**/*.feature"
-
+      
+      - name: 🔄 Consolidar relatórios Mochawesome
+        if: always()
+        run: |
+          npx mochawesome-merge "cypress/reports/mochawesome-report/*.json" > cypress/reports/mochawesome-report/merged-report.json
+          npx marge cypress/reports/mochawesome-report/merged-report.json --reportDir cypress/reports/mochawesome-report --inline
+      
       - name: 🗂️ Garantir diretórios de artefatos
         if: always()
-        run: mkdir -p cypress/screenshots cypress/videos cypress/reports/mochawesome-report
-
+        run: mkdir -p cypress/screenshots cypress/videos
+      
       - name: 📄 Publicar artefatos dos testes E2E + Report
         if: always()
         uses: actions/upload-artifact@v4
@@ -74,15 +80,14 @@ jobs:
             cypress/screenshots
             cypress/videos
             cypress/reports/mochawesome-report
-
+      
       - name: 🌐 Publicar Mochawesome Report no GitHub Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./cypress/reports/mochawesome-report
-
-
+      
       - name: 🔗 Adicionar link do relatório ao summary
         if: always()
         run: |
