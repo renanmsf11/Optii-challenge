@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-11-03T19:26:42.972Z",
-    "end": "2025-11-03T19:26:43.554Z",
-    "duration": 582,
+    "start": "2025-11-03T19:34:38.585Z",
+    "end": "2025-11-03T19:34:39.172Z",
+    "duration": 587,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "c625f5ae-2e84-4ed6-82ef-f06bfe3dcd58",
+      "uuid": "150360fe-1bb9-41fc-bf47-1a5f8b289eea",
       "title": "",
       "fullFile": "cypress/e2e/api/products/products.cy.js",
       "file": "cypress/e2e/api/products/products.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "badf991e-1c6f-42a1-83dd-98f6a988c8d1",
+          "uuid": "fd9dff46-be11-4431-8965-3d70897147ef",
           "title": "GET /produtos - list products (200)",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should return a list of products",
               "fullTitle": "GET /produtos - list products (200) should return a list of products",
               "timedOut": null,
-              "duration": 432,
+              "duration": 416,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "cy.request({\n  method: 'GET',\n  url: 'https://serverest.dev/produtos',\n  headers: {\n    'Content-Type': 'application/json',\n    Accept: 'application/json'\n  },\n  failOnStatusCode: false\n}).then(function (response) {\n  expect(response.status).to.eq(200);\n  var responseBody = response.body;\n  var products = responseBody.produtos;\n  cy.log('📦 Products found:');\n  if (Array.isArray(products)) {\n    products.forEach(function (product, index) {\n      cy.log(\"\\n\\uD83D\\uDED2 Product \".concat(index + 1));\n      cy.log(\"ID: \".concat(product._id));\n      cy.log(\"Name: \".concat(product.nome));\n      cy.log(\"Price: \".concat(product.preco));\n      cy.log(\"Description: \".concat(product.descricao));\n      cy.log(\"Quantity: \".concat(product.quantidade));\n    });\n  } else {\n    cy.log('⚠️ No products found or unexpected response structure:', JSON.stringify(products));\n  }\n});",
               "err": {},
-              "uuid": "dd213510-fb57-4436-a0bf-6009acb9b198",
-              "parentUUID": "badf991e-1c6f-42a1-83dd-98f6a988c8d1",
+              "uuid": "5349c8a2-dd49-48c2-9748-5241363dea12",
+              "parentUUID": "fd9dff46-be11-4431-8965-3d70897147ef",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "dd213510-fb57-4436-a0bf-6009acb9b198"
+            "5349c8a2-dd49-48c2-9748-5241363dea12"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 432,
+          "duration": 416,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

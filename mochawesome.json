@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2025-11-03T19:26:40.337Z",
-    "end": "2025-11-03T19:26:40.729Z",
-    "duration": 392,
+    "start": "2025-11-03T19:34:35.510Z",
+    "end": "2025-11-03T19:34:36.323Z",
+    "duration": 813,
     "testsRegistered": 1,
     "passPercent": 100,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "17311809-f57e-41a8-a1d7-a3434712d60f",
+      "uuid": "37d73335-4be4-4462-8664-0e188d1d328f",
       "title": "",
       "fullFile": "cypress/e2e/api/auth/login.cy.js",
       "file": "cypress/e2e/api/auth/login.cy.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "2ec1a05c-7090-40b4-859d-75f80ebc7a14",
+          "uuid": "057c0399-2ade-4f18-9c33-599101d3c8df",
           "title": "POST /login - authenticate with a newly created user (200)",
           "fullFile": "",
           "file": "",
@@ -38,7 +38,7 @@
               "title": "should successfully create and authenticate a user",
               "fullTitle": "POST /login - authenticate with a newly created user (200) should successfully create and authenticate a user",
               "timedOut": null,
-              "duration": 350,
+              "duration": 740,
               "state": "passed",
               "speed": "fast",
               "pass": true,
@@ -47,20 +47,20 @@
               "context": null,
               "code": "var random = Math.floor(Math.random() * 100000);\nvar email = \"testqa\".concat(random, \"@qa.com\");\nvar user = {\n  nome: 'test',\n  email: email,\n  password: 'test',\n  administrador: 'true'\n};\n// Create the user\ncy.request({\n  method: 'POST',\n  url: 'https://serverest.dev/usuarios',\n  body: user,\n  headers: {\n    'Content-Type': 'application/json',\n    Accept: 'application/json'\n  },\n  failOnStatusCode: false\n}).then(function (createRes) {\n  expect(createRes.status).to.eq(201);\n  expect(createRes.body.message).to.eq('Cadastro realizado com sucesso');\n  cy.log(\"\\uD83D\\uDD10 Logging in with: \".concat(user.email, \" | Password: \").concat(user.password));\n  // Log in with the same user\n  cy.request({\n    method: 'POST',\n    url: 'https://serverest.dev/login',\n    body: {\n      email: user.email,\n      password: user.password\n    },\n    headers: {\n      'Content-Type': 'application/json',\n      Accept: 'application/json'\n    },\n    failOnStatusCode: false\n  }).then(function (loginRes) {\n    expect(loginRes.status).to.eq(200);\n    expect(loginRes.body).to.have.property('authorization');\n    cy.log('✅ Token received:', loginRes.body.authorization);\n  });\n});",
               "err": {},
-              "uuid": "a2869be7-cb30-4158-9268-a70f4ed6a5a2",
-              "parentUUID": "2ec1a05c-7090-40b4-859d-75f80ebc7a14",
+              "uuid": "67080dd6-4403-4fed-8b7f-4ebef44a95f0",
+              "parentUUID": "057c0399-2ade-4f18-9c33-599101d3c8df",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "a2869be7-cb30-4158-9268-a70f4ed6a5a2"
+            "67080dd6-4403-4fed-8b7f-4ebef44a95f0"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 350,
+          "duration": 740,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000
