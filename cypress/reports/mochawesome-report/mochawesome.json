@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-11-03T18:25:53.961Z",
+    "end": "2025-11-03T18:25:54.672Z",
+    "duration": 711,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "25903fc1-6009-4254-bab1-a33f7ad4ef3d",
+      "title": "",
+      "fullFile": "cypress\\e2e\\api\\auth\\login.cy.js",
+      "file": "cypress\\e2e\\api\\auth\\login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d6c45baf-e1e0-468e-860f-9c0ffb6dbbe0",
+          "title": "POST /login - authenticate with a newly created user (200)",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should successfully create and authenticate a user",
+              "fullTitle": "POST /login - authenticate with a newly created user (200) should successfully create and authenticate a user",
+              "timedOut": null,
+              "duration": 679,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var random = Math.floor(Math.random() * 100000);\nvar email = \"testqa\".concat(random, \"@qa.com\");\nvar user = {\n  nome: 'test',\n  email: email,\n  password: 'test',\n  administrador: 'true'\n};\n// Create the user\ncy.request({\n  method: 'POST',\n  url: 'https://serverest.dev/usuarios',\n  body: user,\n  headers: {\n    'Content-Type': 'application/json',\n    Accept: 'application/json'\n  },\n  failOnStatusCode: false\n}).then(function (createRes) {\n  expect(createRes.status).to.eq(201);\n  expect(createRes.body.message).to.eq('Cadastro realizado com sucesso');\n  cy.log(\"\\uD83D\\uDD10 Logging in with: \".concat(user.email, \" | Password: \").concat(user.password));\n  // Log in with the same user\n  cy.request({\n    method: 'POST',\n    url: 'https://serverest.dev/login',\n    body: {\n      email: user.email,\n      password: user.password\n    },\n    headers: {\n      'Content-Type': 'application/json',\n      Accept: 'application/json'\n    },\n    failOnStatusCode: false\n  }).then(function (loginRes) {\n    expect(loginRes.status).to.eq(200);\n    expect(loginRes.body).to.have.property('authorization');\n    cy.log('✅ Token received:', loginRes.body.authorization);\n  });\n});",
+              "err": {},
+              "uuid": "2b0753a7-3782-48ed-bfe0-4322a8934126",
+              "parentUUID": "d6c45baf-e1e0-468e-860f-9c0ffb6dbbe0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2b0753a7-3782-48ed-bfe0-4322a8934126"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 679,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true
+      },
+      "version": "6.3.0"
+    }
+  }
+}

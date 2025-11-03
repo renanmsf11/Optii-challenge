@@ -1,0 +1,106 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-11-03T18:25:57.191Z",
+    "end": "2025-11-03T18:25:58.120Z",
+    "duration": 929,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "fa2702fc-9b9d-4a87-b983-39495b841bef",
+      "title": "",
+      "fullFile": "cypress\\e2e\\api\\products\\products.cy.js",
+      "file": "cypress\\e2e\\api\\products\\products.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0cb95219-b2df-493e-97df-67de7fdeb36e",
+          "title": "GET /produtos - list products (200)",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should return a list of products",
+              "fullTitle": "GET /produtos - list products (200) should return a list of products",
+              "timedOut": null,
+              "duration": 630,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.request({\n  method: 'GET',\n  url: 'https://serverest.dev/produtos',\n  headers: {\n    'Content-Type': 'application/json',\n    Accept: 'application/json'\n  },\n  failOnStatusCode: false\n}).then(function (response) {\n  expect(response.status).to.eq(200);\n  var responseBody = response.body;\n  var products = responseBody.produtos;\n  cy.log('📦 Products found:');\n  if (Array.isArray(products)) {\n    products.forEach(function (product, index) {\n      cy.log(\"\\n\\uD83D\\uDED2 Product \".concat(index + 1));\n      cy.log(\"ID: \".concat(product._id));\n      cy.log(\"Name: \".concat(product.nome));\n      cy.log(\"Price: \".concat(product.preco));\n      cy.log(\"Description: \".concat(product.descricao));\n      cy.log(\"Quantity: \".concat(product.quantidade));\n    });\n  } else {\n    cy.log('⚠️ No products found or unexpected response structure:', JSON.stringify(products));\n  }\n});",
+              "err": {},
+              "uuid": "f13f29a0-3f3b-4d86-be2b-16fbebd2cce0",
+              "parentUUID": "0cb95219-b2df-493e-97df-67de7fdeb36e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f13f29a0-3f3b-4d86-be2b-16fbebd2cce0"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 630,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true
+      },
+      "version": "6.3.0"
+    }
+  }
+}

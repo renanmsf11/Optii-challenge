@@ -36,9 +36,10 @@ Then('the user is redirected to the "Product" page', () => {
   cy.get('span.title[data-test="title"]').should('be.visible').and('have.text', 'Products');
 })
 
-
 Then('system must return an error message "Epic sadface: Sorry, this user has been locked out."', () => {
-  cy.get('h3[data-test="error"]').should('be.visible').and('have.text', 'Epic sadface: Sorry, this user has been locked out.')
+  cy.fixture('pomLoginPage').then((el) => {
+    cy.get(el.errorMessage).should('be.visible').and('have.text', 'Epic sadface: Sorry, this user has been locked out.')
+  })
 })
 
 When('the user types invalid user credentials in "Login" page', () => {
@@ -48,10 +49,41 @@ When('the user types invalid user credentials in "Login" page', () => {
   })
 })
 
-Then('system must return an error message "Epic sadface: Username and password do not match any user in this service"', () => {
+Then('system must return an error message "Epic sadface: Username is required"', () => {
 
   cy.fixture('pomLoginPage').then((el) => {
-    cy.get(el.errorMessage).should('be.visible').and('have.text', 'Epic sadface: Username and password do not match any user in this service')
+    cy.get(el.errorMessage).should('be.visible').and('have.text', 'Epic sadface: Username is required')
   })
   
+})
+
+When('the user leaves empty the user credentials in "Login" page', () => {
+  cy.fixture('pomLoginPage').then((el) => { 
+    cy.get(el.usernameField).should('be.visible').clear()
+    cy.get(el.passwordField).should('be.visible').clear() 
+  })   
+  })
+   
+Then('system must return an error message "Epic sadface: Username and password do not match any user in this service"', () => {
+  
+    cy.fixture('pomLoginPage').then((el) => {
+    cy.get(el.errorMessage).should('be.visible').and('have.text', 'Epic sadface: Username and password do not match any user in this service')
+  })
+
+})
+
+When ('the user click in the "Menu" button in "Product" page', () => {
+  cy.fixture('pomLoginPage').then((el) => {
+    cy.get(el.menuButton).should('be.visible').click();
+  })
+})
+
+Then('the user click in the "Logout" button in "Product" page', () => {
+  cy.fixture('pomLoginPage').then((el) => {
+    cy.get(el.logoutLink).should('be.visible').click();
+  })
+})
+
+Then('the user is redirected to the "Login" page', () => {
+  cy.get('div.login_logo').should('be.visible');
 })
